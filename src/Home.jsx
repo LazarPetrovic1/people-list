@@ -1,10 +1,10 @@
 import React from "react";
-import User from "./User";
+import UserList from "./users/UserList";
 import { Link } from "react-router-dom";
-import linkStyle from "../linkStyle";
+import linkStyle from "./linkStyle";
 
-function UserList(props) {
-  const { users, deleteUser, ascend, descend } = props;
+function Home(props) {
+  const { deleteUser, users, ascend, descend } = props;
 
   return (
     <>
@@ -12,14 +12,14 @@ function UserList(props) {
         <button
           className="f6 grow no-underline br-pill ph3 pv2 ma2 dib white bg-black"
           style={{ outline: "none" }}
-          onClick={ascend}
+          onClick={() => ascend()}
         >
           ASC
         </button>
         <button
           className="f6 grow no-underline br-pill ph3 pv2 ma2 dib white bg-black"
           style={{ outline: "none" }}
-          onClick={descend}
+          onClick={() => descend()}
         >
           DESC
         </button>
@@ -27,22 +27,9 @@ function UserList(props) {
           Add another user
         </Link>
       </div>
-      <div className="tc">
-        {users.map(user => (
-          <User
-            key={user.id}
-            id={user.id}
-            name={user.name}
-            email={user.email}
-            username={user.username}
-            address={user.address}
-            company={user.company}
-            deleteUser={deleteUser}
-          />
-        ))}
-      </div>
+      <UserList deleteUser={deleteUser} users={users} />
     </>
   );
 }
 
-export default UserList;
+export default Home;
